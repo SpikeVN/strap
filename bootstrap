@@ -6,8 +6,8 @@ echo "Copyright (c) 2025 FalcoLabs Compute."
 
 python3 -m pip install --user gdown
 mkdir /tmp/strapper
-echo "[*] downloading strap at $1"
-gdown "$1" -O /tmp/strapper/archive.tar.xz
+echo "[*] downloading strap at $STRAPLINK"
+gdown "$STRAPLINK" -O /tmp/strapper/archive.tar.xz
 tar xzvf /tmp/strapper/archive.tar.xz -C .
 
 if command -v apt-get &>/dev/null; then
