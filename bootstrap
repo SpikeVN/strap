@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+echo "bootstrap - new instance deploy tool"
+echo "Copyright (c) 2025 FalcoLabs Compute."
+
+python3 -m pip install --user gdown
+mkdir /tmp/strapper
+echo "[*] downloading strap at $1"
+gdown "$1" -O /tmp/strapper/archive.tar.xz
+tar xzvf /tmp/strapper/archive.tar.xz -C .
+
+if command -v apt-get &>/dev/null; then
+    sudo apt-get install zsh git curl wget
+fi
+
+if command -v dnf &>/dev/null; then
+    sudo dnf install zsh git curl wget
+fi
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo 'export PATH="/home/triph/PhuongBase/bin:$PATH"' >> ~/.zshrc
+
+echo "[*] done."
